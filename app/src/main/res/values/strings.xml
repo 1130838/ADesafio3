@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">ADesafio3</string>
     <string name="action_settings">action_settings</string>
+
+    <string name="student_label">STUDENTS</string>
+
+    <string-array name="students_array">
+        <item>Student 1</item>
+        <item>Student 2</item>
+        <item>Student 3</item>
+        <item>Student 4</item>
+        <item>Student 5</item>
+        <item>Student 6</item>
+        <item>Student 7</item>
+        <item>Student 8</item>
+        <item>Student 9</item>
+        <item>Student 10</item>
+
+    </string-array>
 </resources>
