@@ -3,12 +3,14 @@ package com.brunodevesa.adesafio3;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView ;
     List<String> things;
     String[] resourcesArray;
+    EditText et;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         mListView = (ListView)findViewById(R.id.listView);
         textView = (TextView)findViewById(R.id.textView);
+        et = (EditText) findViewById(R.id.activity_main_et_textToPass_is);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, things);
         mListView.setAdapter(adapter);
@@ -60,12 +64,13 @@ public class MainActivity extends AppCompatActivity {
         //Handle item selection
         switch (item.getItemId()){
             case R.id.action_edit_preferences:
-                String str = "this is a test";
+
                 Intent intent = new Intent(this, EditActivity.class);
-                intent.putExtra(MYSHPREFS, str);
+                String msg = String.valueOf(et.getText());
+                intent.putExtra(MYSHPREFS,msg);
                 startActivity(intent);
 
-               // Toast.makeText(this, "Testing changing preferences", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(this, et.getText(), Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

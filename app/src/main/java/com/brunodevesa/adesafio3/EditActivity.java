@@ -8,11 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditActivity extends AppCompatActivity {
-
-    private static final String MYSHPREFS="MySharedPrefences";
-    private static final String MYKEY="MyKey";
     TextView tv;
 
+    private static final String MYSHPREFS="MySharedPrefences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,6 +21,13 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_main_et_textToPass_is"
+        android:hint="Put your text here"
+        android:padding="15dp"/>
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
