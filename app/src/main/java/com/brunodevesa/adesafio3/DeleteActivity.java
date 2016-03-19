@@ -7,13 +7,14 @@ import android.widget.TextView;
 
 public class DeleteActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete);
 
-        TextView tv = (TextView)findViewById(R.id.textView);
-        Intent intent = getIntent();
-       // String str = intent.getStringExtra()
+        TextView tv = (TextView)findViewById(R.id.edit_activity_tv_text_id);
+
     }
 }

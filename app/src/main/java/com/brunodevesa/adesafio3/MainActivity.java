@@ -18,7 +18,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String EXTRA_STRING = "com.brunodevesa.adesafio3.extra_string";
+    private static final String MYSHPREFS="MySharedPrefences";
+    private static final String MYKEY="MyKey";
+
     ArrayAdapter<String> adapter;
 
     ListView mListView;
@@ -32,12 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         resourcesArray = getResources().getStringArray(R.array.students_array);
-
         things = Arrays.asList(resourcesArray);
-
-       /* things.add("First thing");
-        things.add("Second thing");
-        things.add("Third thing");*/
 
         mListView = (ListView)findViewById(R.id.listView);
         textView = (TextView)findViewById(R.id.textView);
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.context_menu, menu);
+       getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
 
@@ -62,16 +59,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //Handle item selection
         switch (item.getItemId()){
-            case R.id.action_add:
-                Toast.makeText(this, "Testing add", Toast.LENGTH_SHORT).show();
+            case R.id.action_edit_preferences:
+                String str = "this is a test";
+                Intent intent = new Intent(this, EditActivity.class);
+                intent.putExtra(MYSHPREFS, str);
+                startActivity(intent);
+
+               // Toast.makeText(this, "Testing changing preferences", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
 
 
     @Override
