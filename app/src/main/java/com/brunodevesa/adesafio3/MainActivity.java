@@ -1,6 +1,7 @@
 package com.brunodevesa.adesafio3;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +21,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String MYSHPREFS = "MySharedPrefences";
-    private static final String MYKEY = "MyKey";
+    private static final String MYSHPREFS = "MySharedPreferences";
+    //private static final String MYBACKGROUNDCOLOR = "MyBackGroundColor";
     private static final int REQUEST_CODE_1 = 1;
 
     ArrayAdapter<String> adapter;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> things;
     String[] resourcesArray;
     EditText et;
+    String myFavouriteBackgroundColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,38 @@ public class MainActivity extends AppCompatActivity {
 
         registerForContextMenu(mListView);
 
+        //SharedPreferences stuff (to get shared preferences when activity creation - when app starts too):
+        SharedPreferences sharedPreferences = getSharedPreferences(MYSHPREFS, 0);
+        myFavouriteBackgroundColor = sharedPreferences.getString("MY_COLOR", "");
+        updateUserSettings(myFavouriteBackgroundColor);
+
     }
+
+
+    public void updateUserSettings(String favColor) {
+
+        if (favColor.equalsIgnoreCase("blue")) {
+            mListView.setBackgroundColor(Color.parseColor("#95BECC"));
+            adapter.notifyDataSetChanged(); // Important to notify Adapter !!
+            Toast.makeText(this, "backgound color changed to " + favColor, Toast.LENGTH_SHORT).show();
+
+        }
+        else if (favColor.equalsIgnoreCase("red")) {
+            mListView.setBackgroundColor(Color.parseColor("#F0A3A3"));
+                    adapter.notifyDataSetChanged(); // Important to notify Adapter !!
+            Toast.makeText(this, "backgound color changed to " + favColor, Toast.LENGTH_SHORT).show();
+
+        }
+        else if (favColor.equalsIgnoreCase("gray")) {
+            mListView.setBackgroundColor(Color.parseColor("#B8B8B8"));
+            adapter.notifyDataSetChanged(); // Important to notify Adapter !!
+            Toast.makeText(this, "backgound color changed to " + favColor, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            mListView.setBackgroundColor(Color.WHITE);
+        }
+    }
+
 
 
     @Override
@@ -65,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_edit_preferences:
 
                 Intent intent = new Intent(this, EditActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_1); // waits for a result that will be called in the onActivityResult
+                startActivityForResult(intent, REQUEST_CODE_1); // waits for a result that will be called in the onActivityResult()
 
                 //  Toast.makeText(this, et.getText(), Toast.LENGTH_SHORT).show();
                 return true;
@@ -75,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * When the invoked activity reply its result, it will do this method
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -84,12 +123,13 @@ public class MainActivity extends AppCompatActivity {
                     String msg = data.getStringExtra("EXTRA_MESSAGE");
                     Toast.makeText(this, "message received = " + msg, Toast.LENGTH_LONG).show();
 
-                    if (msg.equalsIgnoreCase("blue")) {
-                        mListView.setBackgroundColor(Color.BLUE);
-                    } else {
-                        mListView.setBackgroundColor(Color.WHITE);
+                    updateUserSettings(msg);
 
-                    }
+                    //SharedPreferences stuff :
+                    SharedPreferences sharedPreferences= getSharedPreferences(MYSHPREFS, 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("MY_COLOR", msg);
+                    editor.apply();
             }
         }
     }
@@ -108,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         long id = info.id;
 
         Intent intent;
-        String str =  adapter.getItem(pos);
+        String str = adapter.getItem(pos);
 
         switch (item.getItemId()) {
             case R.id.delete:
