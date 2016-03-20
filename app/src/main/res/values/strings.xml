@@ -3,6 +3,7 @@
     <string name="action_settings">edit background colors</string>
 
     <string name="student_label">STUDENTS</string>
+    <string name="activity_edit_tv_info">This is EditActivity.\nChoose a color for activitys main background.\nThis option will be stored in the SharedPreferences</string>
 
     <string-array name="students_array">
         <item>Student 1</item>
@@ -15,6 +16,13 @@
         <item>Student 8</item>
         <item>Student 9</item>
         <item>Student 10</item>
-
     </string-array>
+
+
+    <string-array name="color_array">
+        <item>Gray</item>
+        <item>Red</item>
+        <item>Blue</item>
+    </string-array>
+
 </resources>
