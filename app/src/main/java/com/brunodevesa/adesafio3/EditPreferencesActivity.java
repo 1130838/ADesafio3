@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-public class EditActivity extends AppCompatActivity {
+public class EditPreferencesActivity extends AppCompatActivity {
     TextView tv;
     ListView lv;
     String[] resourcesArray;
@@ -24,7 +24,7 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_edit_preferences);
 
         tv = (TextView) findViewById(R.id.activity_edit_tv_text_id);
         lv = (ListView) findViewById(R.id.activity_edit_lv_colorList);

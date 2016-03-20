@@ -3,7 +3,9 @@
     <string name="action_settings">edit background colors</string>
 
     <string name="student_label">STUDENTS</string>
-    <string name="activity_edit_tv_info">This is EditActivity.\nChoose a color for activitys main background.\nThis option will be stored in the SharedPreferences</string>
+    <string name="activity_editPreferences_tv_info">This is EditPreferencesActivity.\nChoose a color for activitys main background.\nThis option will be stored in the SharedPreferences</string>
+    <string name="activity_editList_tv_info">This is EditListActivity.\nEdit the chosen name of the list and click the save button.\nThe name will be replyed and shown in the mainActivity List</string>
+    <string name="activity_editList_btn_save">Save</string>
 
     <string-array name="students_array">
         <item>Student 1</item>
@@ -23,6 +25,8 @@
         <item>Gray</item>
         <item>Red</item>
         <item>Blue</item>
+        <item>Black (default)</item>
+
     </string-array>
 
 </resources>

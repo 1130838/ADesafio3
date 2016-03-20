@@ -15,9 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DeleteActivity">
+        <activity android:name=".EditListActivity">
         </activity>
-        <activity android:name=".EditActivity">
+        <activity android:name=".EditPreferencesActivity">
         </activity>
     </application>
 
