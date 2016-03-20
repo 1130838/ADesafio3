@@ -19,7 +19,6 @@ public class EditPreferencesActivity extends AppCompatActivity {
     String[] resourcesArray;
     List<String> colorList;
     ArrayAdapter<String> adapter;
-    private static final String MYSHPREFS = "MySharedPrefences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

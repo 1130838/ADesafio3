@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +21,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String MYSHPREFS = "MySharedPreferences";
-    //private static final String MYBACKGROUNDCOLOR = "MyBackGroundColor";
     private static final int REQUEST_CODE_1 = 1;
     private static final int REQUEST_CODE_2 = 2;
 
@@ -33,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     List<String> studentsArray;
     String[] resourcesArray;
-    EditText et;
     String myFavouriteBackgroundColor;
 
     @Override
@@ -67,23 +64,19 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged(); // Important to notify Adapter !!
             Toast.makeText(this, "background color changed to " + favColor, Toast.LENGTH_SHORT).show();
 
-        }
-        else if (favColor.equalsIgnoreCase("red")) {
+        } else if (favColor.equalsIgnoreCase("red")) {
             mListView.setBackgroundColor(Color.parseColor("#F0A3A3"));
-                    adapter.notifyDataSetChanged(); // Important to notify Adapter !!
+            adapter.notifyDataSetChanged(); // Important to notify Adapter !!
             Toast.makeText(this, "background color changed to " + favColor, Toast.LENGTH_SHORT).show();
 
-        }
-        else if (favColor.equalsIgnoreCase("gray")) {
+        } else if (favColor.equalsIgnoreCase("gray")) {
             mListView.setBackgroundColor(Color.parseColor("#B8B8B8"));
             adapter.notifyDataSetChanged(); // Important to notify Adapter !!
             Toast.makeText(this, "background color changed to " + favColor, Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             mListView.setBackgroundColor(Color.WHITE);
         }
     }
-
 
 
     @Override
@@ -101,9 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, EditPreferencesActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_1); // waits for a result that will be called in the onActivityResult()
-
                 //  Toast.makeText(this, et.getText(), Toast.LENGTH_SHORT).show();
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -112,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * When the invoked activity reply its result, it will do this method
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -121,19 +114,20 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             switch (requestCode) {
-                case REQUEST_CODE_1:
+                case REQUEST_CODE_1: // for the prefered color (options menu)
                     String msg = data.getStringExtra("EXTRA_MESSAGE");
                     Toast.makeText(this, "message received = " + msg, Toast.LENGTH_SHORT).show();
 
                     updateUserSettings(msg);
 
                     //SharedPreferences stuff :
-                    SharedPreferences sharedPreferences= getSharedPreferences(MYSHPREFS, 0);
+                    SharedPreferences sharedPreferences = getSharedPreferences(MYSHPREFS, 0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("MY_COLOR", msg);
                     editor.apply();
                     break;
-                case REQUEST_CODE_2:
+
+                case REQUEST_CODE_2: // for the name edited (list context menu)
                     String msg2 = data.getStringExtra("NAME_TO_EDIT");
                     int pos = data.getIntExtra("POSITION_TO_EDIT", 0);
 
@@ -141,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged(); // notify the adapter of the changes - Important to notify Adapter !!
 
                     Toast.makeText(this, "message received: name=" + msg2 + "position = " + pos, Toast.LENGTH_LONG).show();
-
             }
 
         }
@@ -160,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         int pos = info.position;
         long id = info.id;
 
-       // Intent intent;
+        // Intent intent;
         String str = adapter.getItem(pos);
 
         switch (item.getItemId()) {
@@ -175,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivityForResult(intent, REQUEST_CODE_2);
 
-              //  Toast.makeText(this, "Testing edit", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(this, "Testing edit", Toast.LENGTH_SHORT).show();
             default:
                 return super.onContextItemSelected(item);
         }
